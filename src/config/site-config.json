@@ -1,0 +1,116 @@
+{
+  "company": {
+    "name": "YZIHUB",
+    "tagline": "A parceira que faltava para sua empresa dominar a era da IA.",
+    "description": "A YZI entende o caos da sua operação e integra agentes autônomos para que você escale com liberdade."
+  },
+  "silos": [
+    {
+      "id": "a2a",
+      "name": "YZI",
+      "label": "Execução Autônoma",
+      "title": "Deixe o trabalho pesado com a YZI.",
+      "description": "Ela não apenas automatiza; ela entende o contexto. A YZI assume tarefas complexas 24/7, garantindo que nada escape entre os dedos enquanto você foca no que importa.",
+      "deepTech": "Orquestração completa via Protocolo PAM",
+      "badge": "Core",
+      "accentColor": "text-brand-blue",
+      "glowColor": "rgba(59,130,246,0.06)",
+      "iconName": "Workflow",
+      "tags": ["MCP-Native", "Tempo Real", "Consistente"],
+      "microLabel": "YZI: Executando tarefa.",
+      "videoSrc": "/videos/a2a-motion.mp4",
+      "featured": true
+    },
+    {
+      "id": "seo",
+      "name": "Inteligência",
+      "label": "Inteligência de Mercado",
+      "title": "YZI vê o que ninguém vê.",
+      "description": "No mar de dados, a YZI filtra o que é oportunidade real. Ela monitora o mercado e te entrega a jogada pronta para ser executada.",
+      "deepTech": "Análise semântica de alta frequência",
+      "badge": "IA",
+      "accentColor": "text-brand-purple",
+      "glowColor": "rgba(139,92,246,0.06)",
+      "iconName": "Radar",
+      "tags": ["Dados em Tempo Real", "IA Aplicada", "Sem Ruído"],
+      "microLabel": "YZI: Reagindo em tempo real.",
+      "videoSrc": "/videos/market-radar.mp4",
+      "featured": false
+    },
+    {
+      "id": "saas",
+      "name": "Revenue",
+      "label": "Growth Operating System",
+      "title": "Crescer não precisa ser doloroso.",
+      "description": "A YZI organiza seu motor de receita. Ela conecta as pontas entre marketing e vendas, criando um caminho livre de obstáculos para o seu lucro.",
+      "deepTech": "Pipeline integrado entre marketing e vendas",
+      "badge": "Novo",
+      "accentColor": "text-brand-blue",
+      "glowColor": "rgba(59,130,246,0.06)",
+      "iconName": "Bot",
+      "tags": ["Escala Automática", "Pipeline", "Retenção"],
+      "microLabel": "YZI: Abrindo oportunidade.",
+      "videoSrc": "/videos/revenue-engine.mp4",
+      "featured": false
+    }
+  ],
+  "features": [
+    {
+      "id": "crm",
+      "label": "Memória Operacional",
+      "title": "Uma parceira que aprende com você.",
+      "description": "A YZI guarda cada detalhe da sua operação. Ela cria uma memória viva que evolui com seu negócio, ficando mais inteligente a cada dia.",
+      "deepTech": "Memória vetorial que cresce com o negócio",
+      "accentColor": "text-emerald-400",
+      "iconName": "Users",
+      "badge": "Base",
+      "microLabel": "YZI: Lembra de tudo."
+    },
+    {
+      "id": "sdr",
+      "label": "Agente de Vendas IA",
+      "title": "SDR Agent",
+      "description": "Não é um chatbot — é uma parceira de vendas autônoma. Ela qualifica, enriquece e cria leads em tempo real enquanto você foca no fechamento.",
+      "deepTech": "Agente autônomo integrado ao seu funil de vendas",
+      "accentColor": "text-brand-purple",
+      "iconName": "Bot",
+      "badge": "IA",
+      "microLabel": "YZI: Qualificando lead."
+    },
+    {
+      "id": "workflows",
+      "label": "Camada de Automação",
+      "title": "Automação sem limite.",
+      "description": "Fluxos inteligentes que disparam na hora certa, com controle de fluxo nativo, autenticação segura e visibilidade total de cada ação executada.",
+      "deepTech": "Controle de Fluxo + Observabilidade de ações nativa",
+      "accentColor": "text-sky-400",
+      "iconName": "Workflow",
+      "badge": null,
+      "microLabel": "YZI: Disparando fluxo."
+    },
+    {
+      "id": "analytics",
+      "label": "Camada de Inteligência",
+      "title": "Arquitetura PAM",
+      "description": "Nossos agentes reconhecem padrões, executam ações no momento certo e constroem memória camada por camada — ficando melhores a cada ciclo.",
+      "deepTech": "Ciclo Padrão-Ação-Memória para agentes que evoluem",
+      "accentColor": "text-status-running",
+      "iconName": "BarChart3",
+      "badge": "PAM",
+      "microLabel": "YZI: Analisando contexto.",
+      "tags": ["[P] Reconhece", "[A] Executa", "[M] Aprende"],
+      "isPAM": true
+    },
+    {
+      "id": "whatsapp",
+      "label": "Canal de Execução",
+      "title": "WhatsApp Nativo",
+      "description": "Agentes recebem, respondem e executam conversas no WhatsApp Business. Cada interação alimenta o funil e aciona o próximo passo automaticamente.",
+      "deepTech": "Mensagens que viram ações no seu pipeline",
+      "accentColor": "text-green-400",
+      "iconName": "MessageSquare",
+      "badge": null,
+      "microLabel": "YZI: Conversa em curso."
+    }
+  ]
+}
