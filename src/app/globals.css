@@ -1,0 +1,181 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ── Design tokens ────────────────────────────────────────────────── */
+:root {
+  --background: #000000;
+  --foreground: #ffffff;
+}
+
+/* ── Base ─────────────────────────────────────────────────────────── */
+body {
+  background-color: #000000;
+  color: #ffffff;
+  font-family: "Inter", ui-sans-serif, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ── Framer-style ambient glow ────────────────────────────────────── */
+.bg-hero-glow {
+  position: absolute;
+  top: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 120vw;
+  height: 1000px;
+  background: radial-gradient(
+    circle at 50% 0%,
+    rgba(138, 43, 226, 0.15) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ── Canvas dot grid (Framer canvas aesthetic) ────────────────────── */
+.bg-canvas-grid {
+  background-image: radial-gradient(
+    circle at 1px 1px,
+    rgba(255, 255, 255, 0.05) 1px,
+    transparent 0
+  );
+  background-size: 24px 24px;
+}
+
+/* ── Glassmorphism card (Framer.com style) ────────────────────────── */
+.framer-glass {
+  background: rgba(10, 10, 10, 0.6);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow:
+    0 20px 40px -10px rgba(0, 0, 0, 0.5),
+    inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framer-glass:hover {
+  border-color: rgba(138, 43, 226, 0.3);
+  background: rgba(15, 18, 30, 0.8);
+}
+
+/* ── Clean border card (Attio-style) ─────────────────────────────── */
+.attio-card {
+  background-color: #0A0A0A;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 4px 24px -4px rgba(0, 0, 0, 0.5);
+}
+
+.attio-card:hover {
+  border-color: rgba(138, 43, 226, 0.3);
+}
+
+/* ── Cinematic video overlays ─────────────────────────────────────── */
+.bg-vignette {
+  background: radial-gradient(circle at center, transparent 40%, rgba(11, 13, 23, 0.9) 120%);
+}
+
+.bg-film-grain {
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+}
+
+/* ── Framer-style clean card (less blur, minimal border) ─────────── */
+.framer-card {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  transition: border-color 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.framer-card:hover {
+  border-color: rgba(255, 255, 255, 0.12);
+}
+
+/* ── SVG flow dash animation ──────────────────────────────────────── */
+@keyframes flow-dash {
+  to {
+    stroke-dashoffset: -12;
+  }
+}
+
+.animate-flow-dash {
+  animation: flow-dash 1s linear infinite;
+}
+
+/* ── Dashboard utilities (internal) ──────────────────────────────── */
+@layer utilities {
+  .hub-card {
+    @apply bg-mage-surface border border-white/[.05] rounded-hub p-4;
+  }
+  .hub-btn {
+    @apply bg-hub-accent hover:bg-hub-accent-hover text-white px-4 py-2 rounded-hub transition-colors;
+  }
+
+  /* Glass (legacy — kept for compat) */
+  .glass {
+    backdrop-filter: blur(12px);
+    background-color: rgba(10, 10, 10, 0.6);
+    @apply border border-white/[.05];
+  }
+  .glass-dark {
+    backdrop-filter: blur(12px);
+    background-color: rgba(0, 0, 0, 0.8);
+    @apply border border-white/[.05];
+  }
+
+  /* Neon glow utilities */
+  .glow-neon {
+    box-shadow: 0 0 20px rgba(120, 119, 198, 0.08);
+  }
+  .glow-accent {
+    box-shadow: 0 0 60px -10px rgba(99, 102, 241, 0.4);
+  }
+  .glow-accent-sm {
+    box-shadow: 0 0 24px -4px rgba(99, 102, 241, 0.3);
+  }
+
+  /* Status LED indicators */
+  .status-running {
+    box-shadow: 0 0 10px rgba(0, 176, 255, 0.5);
+  }
+  .status-success {
+    box-shadow: 0 0 8px rgba(0, 230, 118, 0.6);
+  }
+  .status-error {
+    box-shadow: 0 0 8px rgba(255, 23, 68, 0.5);
+  }
+
+  /* Industrial micro-label */
+  .label-industrial {
+    font-family: "JetBrains Mono", monospace;
+    font-size: 0.625rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #64748b;
+  }
+}
+
+/* ── Smooth scroll ────────────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ── Custom scrollbar ─────────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #000000;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #333333;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #8A2BE2;
+}

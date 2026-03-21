@@ -1,0 +1,95 @@
+# ============================================================
+# YZIHUB — Cursor Rules (AI Coding Guidelines)
+# ============================================================
+
+## IDENTIDADE DO PROJETO
+- Nome: YZIHUB
+- Stack: Next.js 15 (App Router) + TypeScript + Tailwind CSS
+- Metodologia: GSD (Get Shit Done) + A2A (Agent-to-Agent)
+- Padrão de UI: Hub-style minimalista, dark-first
+
+## DESIGN SYSTEM — HUB-STYLE MINIMALISTA
+
+### Paleta de cores obrigatória
+- Background: #0a0a0f (quase preto, não preto puro)
+- Surface: #111118 (cards, painéis)
+- Border: #1e1e2e (bordas sutis)
+- Accent: #6366f1 (indigo — ações primárias)
+- Text: #e2e2f0 (texto principal)
+- Text muted: #8b8ba8 (metadados, labels)
+
+### Regras visuais
+- NUNCA use cores vibrantes ou gradientes excessivos
+- Cards sempre com border-radius 0.75rem e border sutil
+- Sem sombras pesadas — max box-shadow: 0 1px 3px rgba(0,0,0,0.3)
+- Tipografia: Inter para UI, JetBrains Mono para código/dados
+- Espaçamento generoso — prefira padding 16-24px em cards
+- Ícones: Lucide React (padrão do projeto)
+
+## ARQUITETURA DE CÓDIGO
+
+### Estrutura de pastas (OBRIGATÓRIO)
+```
+src/
+  app/          # Next.js App Router — rotas e layouts
+  core/         # Lógica de domínio (agents, workflows, rules)
+  lib/          # Utilitários, helpers, configurações de clientes
+  mcp/          # Integrações MCP (Model Context Protocol)
+  services/     # Serviços externos (Supabase, n8n, Evolution API)
+  types/        # TypeScript types e interfaces globais
+```
+
+### Regras de arquitetura
+1. **App Router only** — sem Pages Router
+2. **Server Components por padrão** — use "use client" só quando necessário
+3. **Path aliases obrigatórios**: `@/*` para src, `@core/*`, `@lib/*`, `@services/*`
+4. **Sem any implícito** — TypeScript strict mode ativo
+5. **API Routes** em `src/app/api/` seguindo REST semântico
+
+### Padrão de nomenclatura
+- Componentes: PascalCase (`HubCard.tsx`)
+- Utilitários/helpers: camelCase (`formatDate.ts`)
+- Tipos/interfaces: PascalCase com prefixo I para interfaces (`IAgent`, `WorkflowConfig`)
+- Constantes: UPPER_SNAKE_CASE
+- Arquivos de rota: lowercase com hífens (`webhook-handler/route.ts`)
+
+## METODOLOGIA A2A (AGENT-TO-AGENT)
+
+### Princípios
+- Cada agente tem responsabilidade única e bem definida
+- Comunicação via eventos/mensagens, nunca chamada direta acoplada
+- Estado de agentes gerenciado centralmente (Supabase)
+- Logs de execução obrigatórios em todos os agentes
+
+### Estrutura de um agente (`src/core/agents/`)
+```typescript
+interface IAgent {
+  id: string
+  name: string
+  type: AgentType
+  status: 'idle' | 'running' | 'error' | 'paused'
+  execute(context: AgentContext): Promise<AgentResult>
+}
+```
+
+## REGRAS DE QUALIDADE
+
+### O que SEMPRE fazer
+- Validar inputs nas API Routes (use Zod)
+- Tipar explicitamente retornos de funções assíncronas
+- Usar `const` por padrão, `let` apenas quando necessário
+- Componentes pequenos e focados (< 150 linhas)
+- Separar lógica de negócio da UI
+
+### O que NUNCA fazer
+- Nunca commitar `.env.local` ou segredos
+- Nunca usar `any` como tipo (use `unknown` + type guards)
+- Nunca fazer fetch direto em componentes — use Server Actions ou API Routes
+- Nunca criar componentes god-object (> 300 linhas)
+- Nunca ignorar erros silenciosamente (no empty catch blocks)
+
+## CONTEXTO AI
+- Sempre consulte `/AI_CONTEXT/` antes de implementar features novas
+- Atualize `PROGRESS.md` ao concluir tarefas
+- Documente decisões arquiteturais em `ARCH_BLUEPRINT.md`
+- Mapeie novos serviços em `SYSTEM_MAP.md`
