@@ -48,7 +48,7 @@ Evolution API (WhatsApp)
 ## MCPs disponíveis
 - Supabase MCP ✅
 - n8n MCP ✅
-- NocoDB MCP 🔲 (confirmar)
+- NocoDB MCP ✅
 
 ## Skills disponíveis
 - setup-projeto
