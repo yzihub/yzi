@@ -41,7 +41,7 @@ export function PerformanceSection() {
               <span className="text-xs font-medium font-geist uppercase tracking-widest text-neutral-400">Conversas em andamento</span>
               <svg aria-hidden="true" className="text-emerald-500" fill="none" height="12" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="2.5" viewBox="0 0 24 24" width="12"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>
             </div>
-            <span className="text-3xl md:text-4xl font-medium tracking-tight tabular-nums font-geist text-neutral-50">124.8 <span className="text-xl ml-0.5 text-neutral-500">TB/s</span></span>
+            <span className="text-3xl md:text-4xl font-medium tracking-tight tabular-nums font-geist text-neutral-50">124 <span className="text-xl ml-0.5 text-neutral-500">leads hoje</span></span>
           </div>
           <div className="flex flex-col gap-2 group transition-transform hover:-translate-y-1 duration-300 border-neutral-800 border-l-2 pt-4 pb-4 pl-4 gap-2">
             <div className="flex items-center gap-2">

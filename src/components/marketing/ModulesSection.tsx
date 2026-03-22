@@ -48,7 +48,7 @@ export function ModulesSection() {
                   <span className="text-[9px] font-mono font-semibold uppercase tracking-wider text-neutral-400">Live View</span>
                 </div>
                 <div className="text-[10px] font-mono font-medium tabular-nums px-2 py-1 rounded-md border border-white/[0.05] shadow-sm text-neutral-50 bg-neutral-800/80">
-                  2.16 TB/s
+                  2.4k msgs/dia
                 </div>
               </div>
               <div className="flex items-end gap-[3px] w-full h-12 z-10 px-0.5">

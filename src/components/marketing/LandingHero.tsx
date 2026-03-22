@@ -160,7 +160,7 @@ export function LandingHero() {
                     <div className="flex flex-wrap items-center gap-4 md:gap-6 mb-8 z-10">
                       <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-md border bg-neutral-950/50 border-neutral-800">
                         <div className="w-2 h-2 rounded-full bg-emerald-500 shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
-                        <span className="text-xs font-medium font-geist text-neutral-400">Leads em fluxo <span className="ml-1 text-neutral-50">124.8k</span></span>
+                        <span className="text-xs font-medium font-geist text-neutral-400">Leads em fluxo <span className="ml-1 text-neutral-50">124 hoje</span></span>
                       </div>
                       <div className="flex items-center gap-2.5 px-3 py-1.5 rounded-md border bg-neutral-950/50 border-neutral-800">
                         <div className="w-2 h-2 rounded-full bg-amber-500 shadow-[0_0_8px_rgba(245,158,11,0.4)]" />
@@ -325,17 +325,16 @@ export function LandingHero() {
                   </div>
                   <div className="flex flex-col md:flex-row items-end gap-6 h-full relative z-10 w-full mt-auto">
                     <div className="flex flex-col shrink-0 mb-4 md:mb-6 w-full md:w-auto relative z-20">
-                      <AuraNumber />
-                      <span className="text-[13px] font-medium mt-3 font-geist flex items-center gap-2 text-neutral-400">
+                      <span className="text-[13px] font-medium font-geist flex items-center gap-2 text-neutral-400">
                         <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                        Volume projetado de leads
+                        Volume de leads
                       </span>
                     </div>
                     <div className="flex-1 md:mt-0 w-full h-[160px] mt-2 relative">
                       <div className="absolute left-[35%] top-[25%] -translate-x-1/2 -translate-y-[calc(100%+12px)] z-30 cursor-default anim-tooltip-float">
                         <div className="border text-[13px] font-medium px-3 py-1.5 rounded-lg shadow-[0_8px_20px_-4px_rgba(0,0,0,0.5)] font-geist tabular-nums flex items-center gap-2 bg-neutral-800 border-neutral-700 text-neutral-50">
                           <div className="w-1.5 h-1.5 rounded-full bg-emerald-500 shadow-[0_0_6px_rgba(16,185,129,0.8)]" />
-                          <AuraNumberSm /> PB
+                          Pico de leads
                         </div>
                         <div className="absolute left-1/2 bottom-0 w-px h-3 bg-emerald-500/30 -translate-x-1/2 translate-y-full" />
                       </div>
