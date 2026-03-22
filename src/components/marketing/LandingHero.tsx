@@ -1,6 +1,9 @@
 'use client'
 
 import { ArrowRight, BarChart2, ShieldAlert, Target } from 'lucide-react'
+import { motion } from 'framer-motion'
+
+const EASE = [0.16, 1, 0.3, 1] as const
 
 export function LandingHero() {
   return (
@@ -31,7 +34,7 @@ export function LandingHero() {
         <div className="flex flex-col w-full max-w-[1100px] items-center">
 
           {/* Badge */}
-          <div className="inline-flex gap-2 border-white/[0.1] [animation:animationIn_0.8s_ease-out_0.2s_both] z-10 bg-neutral-950/80 border rounded-full mb-8 pt-1 pr-3 pb-1 pl-3 relative shadow-sm backdrop-blur-md items-center">
+          <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={{ opacity: 1, filter: 'blur(0px)', scale: 1 }} transition={{ duration: 0.6, ease: EASE }} className="inline-flex gap-2 border-white/[0.1] z-10 bg-neutral-950/80 border rounded-full mb-8 pt-1 pr-3 pb-1 pl-3 relative shadow-sm backdrop-blur-md items-center">
             <div className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400" />
               <span className="relative inline-flex rounded-full h-2 w-2 bg-emerald-500" />
@@ -39,22 +42,29 @@ export function LandingHero() {
             <span className="text-[11px] font-semibold uppercase tracking-widest font-geist text-neutral-300">
               YZI Growth System
             </span>
-          </div>
+          </motion.div>
 
           {/* Headline */}
-          <h1 className="md:text-5xl lg:text-6xl leading-[1.1] [animation:animationIn_0.8s_ease-out_0.3s_both] text-4xl text-neutral-50 tracking-tight font-geist text-center max-w-[800px] z-10 mb-6 relative">
-            Enquanto você responde...{' '}
-            <br className="hidden sm:block" />
-            o sistema já está operando.
+          <h1 className="md:text-5xl lg:text-6xl leading-[1.1] text-4xl text-neutral-50 tracking-tight font-geist text-center max-w-[800px] z-10 mb-6 relative">
+            <span style={{ display: 'block', overflow: 'hidden' }}>
+              <motion.span style={{ display: 'block' }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 0.1 }}>
+                Enquanto você responde...
+              </motion.span>
+            </span>
+            <span className="hidden sm:block" style={{ display: 'block', overflow: 'hidden' }}>
+              <motion.span style={{ display: 'block' }} initial={{ opacity: 0, y: 40 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.9, ease: EASE, delay: 0.25 }}>
+                o sistema já está operando.
+              </motion.span>
+            </span>
           </h1>
 
           {/* Sub */}
-          <p className="leading-relaxed [animation:animationIn_0.8s_ease-out_0.4s_both] md:text-lg text-base text-neutral-400 font-geist text-center max-w-[600px] z-10 mb-10 relative">
+          <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.8, ease: EASE, delay: 0.3 }} className="leading-relaxed md:text-lg text-base text-neutral-400 font-geist text-center max-w-[600px] z-10 mb-10 relative">
             Conecte dados, decisões e execução em um único sistema. Transforme operações fragmentadas em crescimento coordenado.
-          </p>
+          </motion.p>
 
           {/* CTAs */}
-          <div className="z-10 flex flex-col gap-4 sm:w-auto sm:flex-row [animation:animationIn_0.8s_ease-out_0.5s_both] w-full mb-14 relative items-center justify-center">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.5 }} className="z-10 flex flex-col gap-4 sm:w-auto sm:flex-row w-full mb-14 relative items-center justify-center">
             <a
               href="#"
               className="group flex w-full items-center justify-center gap-2 rounded-lg border border-[#009b81] bg-gradient-to-b from-[#00c9a7] to-[#009b81] px-6 py-2.5 text-sm font-medium shadow-md transition-all duration-200 hover:from-[#20d7b2] hover:to-[#00a88a] hover:shadow-lg active:scale-95 sm:w-auto text-white font-geist"
@@ -65,10 +75,10 @@ export function LandingHero() {
             <button className="font-geist flex w-full items-center justify-center rounded-lg border border-white/[0.1] px-6 py-2.5 text-sm font-medium shadow-sm transition-all duration-200 hover:shadow active:scale-95 sm:w-auto bg-neutral-950/80 backdrop-blur-md text-neutral-300 hover:bg-neutral-800 hover:text-white">
               Ver arquitetura
             </button>
-          </div>
+          </motion.div>
 
           {/* Feature indicators */}
-          <div className="flex flex-col md:flex-row md:gap-8 [animation:animationIn_0.8s_ease-out_0.6s_both] z-10 text-xs font-medium relative items-center justify-center text-neutral-400">
+          <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.7, ease: EASE, delay: 0.65 }} className="flex flex-col md:flex-row md:gap-8 z-10 text-xs font-medium relative items-center justify-center text-neutral-400">
             <div className="flex items-center gap-2 font-geist">
               <BarChart2 size={18} className="text-emerald-500" />
               Operação estruturada
@@ -83,7 +93,7 @@ export function LandingHero() {
               <Target size={18} className="text-emerald-500" />
               Execução coordenada
             </div>
-          </div>
+          </motion.div>
 
         </div>
 

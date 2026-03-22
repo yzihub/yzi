@@ -1,30 +1,37 @@
 'use client'
 
 import { AlertTriangle } from 'lucide-react'
+import { motion, useInView } from 'framer-motion'
+import { useRef } from 'react'
+
+const EASE = [0.16, 1, 0.3, 1] as const
 
 export function ModulesSection() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
   return (
-    <section className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-24 pr-6 pb-16 pl-6 relative items-center">
+    <section ref={ref} className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-24 pr-6 pb-16 pl-6 relative items-center">
       <div className="w-full max-w-[1180px]">
 
         {/* Header */}
         <div className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-16 mb-20">
-          <div className="flex-1 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll w-full max-w-[600px]">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="flex-1 w-full max-w-[600px]">
+            <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE }} className="flex items-center gap-2 mb-6">
               <div className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </div>
               <span className="text-xs font-semibold uppercase tracking-widest font-geist text-neutral-400">Módulos do sistema</span>
-            </div>
-            <h2 className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
+            </motion.div>
+            <motion.h2 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
               Construído para orquestrar, decidir e executar em cada etapa do crescimento
-            </h2>
+            </motion.h2>
           </div>
           <div className="flex-1 w-full max-w-[480px] md:mt-12">
-            <p className="leading-relaxed [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll text-base text-neutral-400 font-geist">
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="leading-relaxed text-base text-neutral-400 font-geist">
               Um sistema unificado que conecta dados, leads, decisões e execução em uma única operação contínua. Visibilidade total sem trocar de contexto.
-            </p>
+            </motion.p>
           </div>
         </div>
 
@@ -32,7 +39,7 @@ export function ModulesSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-5 w-full">
 
           {/* Card 1: YZI CONNECT */}
-          <div className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
+          <motion.div initial={{ opacity: 0, y: 40, scale: 0.97 }} animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE, delay: 0.2 }} className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
             style={{ position: 'relative', '--border-gradient': 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))', '--border-radius-before': '20px' } as React.CSSProperties}>
             <h3 className="text-lg font-medium text-neutral-50 tracking-tight font-geist">YZI CONNECT</h3>
             <p className="text-sm leading-relaxed font-geist mb-6 text-neutral-400">
@@ -78,10 +85,10 @@ export function ModulesSection() {
               </div>
               <div className="absolute bottom-0 left-0 right-0 h-6 bg-gradient-to-t to-transparent pointer-events-none z-20 from-neutral-950" />
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 2: YZI RADAR */}
-          <div className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 [animation:animationIn_0.8s_ease-out_0.4s_both] animate-on-scroll bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
+          <motion.div initial={{ opacity: 0, y: 40, scale: 0.97 }} animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE, delay: 0.3 }} className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
             style={{ position: 'relative', '--border-gradient': 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))', '--border-radius-before': '20px' } as React.CSSProperties}>
             <h3 className="text-lg font-medium tracking-tight font-geist text-neutral-50">YZI RADAR</h3>
             <p className="text-sm leading-relaxed font-geist mb-6 text-neutral-400">
@@ -115,10 +122,10 @@ export function ModulesSection() {
                 <span className="text-[10px] font-mono truncate text-neutral-400">Gargalo no funil de aquisição</span>
               </div>
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 3: YZI CONTROL */}
-          <div className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 [animation:animationIn_0.8s_ease-out_0.5s_both] animate-on-scroll bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
+          <motion.div initial={{ opacity: 0, y: 40, scale: 0.97 }} animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE, delay: 0.4 }} className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
             style={{ position: 'relative', '--border-gradient': 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))', '--border-radius-before': '20px' } as React.CSSProperties}>
             <h3 className="text-lg font-medium tracking-tight font-geist text-neutral-50">YZI CONTROL</h3>
             <p className="text-sm leading-relaxed font-geist mb-6 text-neutral-400">
@@ -156,10 +163,10 @@ export function ModulesSection() {
                 </div>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Card 4: YZIHUB Operação */}
-          <div className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 [animation:animationIn_0.8s_ease-out_0.6s_both] animate-on-scroll bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
+          <motion.div initial={{ opacity: 0, y: 40, scale: 0.97 }} animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE, delay: 0.5 }} className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 h-[340px] rounded-[20px] pt-6 pr-6 pb-6 pl-6 shadow-sm"
             style={{ position: 'relative', '--border-gradient': 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(255, 255, 255, 0))', '--border-radius-before': '20px' } as React.CSSProperties}>
             <h3 className="text-lg font-medium tracking-tight font-geist text-neutral-50">YZIHUB: Operação</h3>
             <p className="text-sm leading-relaxed font-geist mb-6 text-neutral-400">
@@ -192,7 +199,7 @@ export function ModulesSection() {
                 ))}
               </div>
             </div>
-          </div>
+          </motion.div>
 
         </div>
       </div>

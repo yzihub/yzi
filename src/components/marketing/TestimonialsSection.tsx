@@ -1,6 +1,9 @@
 'use client'
 
-import React from 'react'
+import React, { useRef } from 'react'
+import { motion, useInView } from 'framer-motion'
+
+const EASE = [0.16, 1, 0.3, 1] as const
 
 const StarIcon = () => (
   <svg className="w-4 h-4 text-emerald-500 fill-emerald-500" viewBox="0 0 20 20">
@@ -45,36 +48,42 @@ const testimonials = [
 ]
 
 export function TestimonialsSection() {
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-80px' })
+
   return (
-    <section className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-32 pr-6 pb-16 pl-6 relative items-center">
+    <section ref={ref} className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-32 pr-6 pb-16 pl-6 relative items-center">
       <div className="w-full max-w-[1180px]">
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 mb-20 items-start justify-between">
-          <div className="flex-1 [animation:animationIn_0.8s_ease-out_0.1s_both] animate-on-scroll w-full max-w-[520px]">
-            <div className="flex items-center gap-2 mb-6">
+          <div className="flex-1 w-full max-w-[520px]">
+            <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE }} className="flex items-center gap-2 mb-6">
               <div className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </div>
               <span className="text-xs font-semibold uppercase tracking-widest font-geist text-neutral-600">Validação</span>
-            </div>
-            <h2 className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
+            </motion.div>
+            <motion.h2 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
               Operações que escolheram estrutura antes de tráfego
-            </h2>
+            </motion.h2>
           </div>
           <div className="flex-1 w-full max-w-[420px] md:mt-12">
-            <p className="leading-relaxed [animation:animationIn_0.8s_ease-out_0.2s_both] animate-on-scroll text-base text-neutral-500 font-geist">
+            <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="leading-relaxed text-base text-neutral-500 font-geist">
               Implementado em operações reais que não podem falhar. Veja como equipes estruturadas utilizam o sistema para manter controle, previsibilidade e crescimento contínuo.
-            </p>
+            </motion.p>
           </div>
         </div>
 
         {/* Testimonials Grid */}
-        <section className="sm:py-24 [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll w-full pt-24 pb-16">
+        <section className="sm:py-24 w-full pt-24 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 w-full">
-            {testimonials.map((t) => (
-              <div
+            {testimonials.map((t, index) => (
+              <motion.div
                 key={t.name}
+                initial={{ opacity: 0, x: -20 }}
+                animate={inView ? { opacity: 1, x: 0 } : {}}
+                transition={{ duration: 0.6, ease: EASE, delay: index * 0.15 }}
                 className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 z-10 rounded-[20px] shadow-[0_2px_14px_-4px_rgba(0,0,0,0.5)]"
                 style={{ position: 'relative', '--border-gradient': borderGradient, '--border-radius-before': '20px' } as React.CSSProperties}
               >
@@ -102,7 +111,7 @@ export function TestimonialsSection() {
                   </div>
                   <div className="text-sm font-geist leading-snug text-neutral-400">{t.metricLabel}</div>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
         </section>
