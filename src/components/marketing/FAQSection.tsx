@@ -1,9 +1,6 @@
 'use client'
 
-import { useState, useRef } from 'react'
-import { motion, AnimatePresence, useInView } from 'framer-motion'
-
-const EASE = [0.16, 1, 0.3, 1] as const
+import { useState } from 'react'
 
 const PlusIcon = () => (
   <svg fill="none" height="20" stroke="currentColor" strokeLinecap="round" strokeLinejoin="round" strokeWidth="1.5" viewBox="0 0 24 24" width="20">
@@ -45,14 +42,13 @@ const faqs = [
   },
 ]
 
-function FAQItem({ faq, index, inView }: { faq: typeof faqs[0]; index: number; inView: boolean }) {
+const itemDelays = ['delay-1', 'delay-2', 'delay-3', 'delay-4', 'delay-5', 'delay-5']
+
+function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [open, setOpen] = useState(faq.defaultOpen ?? false)
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ duration: 0.5, ease: EASE, delay: 0.3 + index * 0.07 }}
-      className="w-full border border-white/[0.05] rounded-[20px] shadow-[0_2px_14px_-4px_rgba(0,0,0,0.5)] hover:border-white/[0.1] hover:bg-white/[0.02] transition-colors duration-300 bg-neutral-900/40 backdrop-blur-sm overflow-hidden"
+    <div
+      className={`scroll-animate ${itemDelays[index]} w-full border border-white/[0.05] rounded-[20px] shadow-[0_2px_14px_-4px_rgba(0,0,0,0.5)] hover:border-white/[0.1] hover:bg-white/[0.02] transition-colors duration-300 bg-neutral-900/40 backdrop-blur-sm overflow-hidden`}
     >
       <button
         onClick={() => setOpen(!open)}
@@ -63,53 +59,46 @@ function FAQItem({ faq, index, inView }: { faq: typeof faqs[0]; index: number; i
           <PlusIcon />
         </span>
       </button>
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            key="answer"
-            initial={{ height: 0, opacity: 0 }}
-            animate={{ height: 'auto', opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.4, ease: EASE }}
-            style={{ overflow: 'hidden' }}
-          >
-            <div className="text-base font-geist leading-relaxed px-5 lg:px-6 pb-5 lg:pb-6 pr-8 lg:pr-12 pt-0 text-neutral-400">
-              {faq.answer}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </motion.div>
+      <div
+        style={{
+          maxHeight: open ? '400px' : '0',
+          opacity: open ? 1 : 0,
+          overflow: 'hidden',
+          transition: 'max-height 0.4s cubic-bezier(0.16,1,0.3,1), opacity 0.35s cubic-bezier(0.16,1,0.3,1)',
+        }}
+      >
+        <div className="text-base font-geist leading-relaxed px-5 lg:px-6 pb-5 lg:pb-6 pr-8 lg:pr-12 pt-0 text-neutral-400">
+          {faq.answer}
+        </div>
+      </div>
+    </div>
   )
 }
 
 export function FAQSection() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
-    <section ref={ref} className="flex flex-col w-full z-10 relative items-center">
+    <section className="flex flex-col w-full z-10 relative items-center">
       <div className="flex-1 flex flex-col lg:pt-16 bg-neutral-950/80 w-full z-10 pt-16 pr-6 pb-16 pl-6 relative items-center">
         {/* Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[400px] blur-[120px] rounded-full pointer-events-none bg-emerald-400/10" />
 
         {/* FAQ Badge */}
-        <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE }} className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.05] mb-6 shadow-sm relative z-10 bg-neutral-900/50">
+        <div className="blur-animate inline-flex items-center gap-2 px-3 py-1 rounded-full border border-white/[0.05] mb-6 shadow-sm relative z-10 bg-neutral-900/50">
           <span className="text-xs font-medium uppercase font-geist tracking-widest text-neutral-400">FAQ</span>
-        </motion.div>
+        </div>
 
-        <motion.h2 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
+        <h2 className="scroll-animate md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
           Perguntas frequentes
-        </motion.h2>
+        </h2>
 
-        <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="text-base md:text-lg font-geist max-w-[600px] text-center mb-16 relative z-10 leading-relaxed text-neutral-500">
+        <p className="scroll-animate delay-1 text-base md:text-lg font-geist max-w-[600px] text-center mb-16 relative z-10 leading-relaxed text-neutral-500">
           Tudo o que você precisa saber sobre o sistema. Não encontrou o que procura?{' '}
           <a className="text-emerald-500 transition-colors hover:text-emerald-400" href="#">Fale com a nossa equipe</a>.
-        </motion.p>
+        </p>
 
         <div className="flex flex-col gap-3 z-10 w-full max-w-[800px] relative">
           {faqs.map((faq, index) => (
-            <FAQItem key={faq.question} faq={faq} index={index} inView={inView} />
+            <FAQItem key={faq.question} faq={faq} index={index} />
           ))}
         </div>
       </div>

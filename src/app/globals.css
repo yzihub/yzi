@@ -305,6 +305,37 @@ body {
   }
 }
 
+/* ── Scroll-triggered entrance (CSS + IntersectionObserver) ──────── */
+.scroll-animate {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.scroll-animate.animate-in {
+  opacity: 1;
+  transform: translateY(0);
+}
+.scroll-animate.delay-1 { transition-delay: 0.1s; }
+.scroll-animate.delay-2 { transition-delay: 0.2s; }
+.scroll-animate.delay-3 { transition-delay: 0.3s; }
+.scroll-animate.delay-4 { transition-delay: 0.4s; }
+.scroll-animate.delay-5 { transition-delay: 0.5s; }
+
+.blur-animate {
+  opacity: 0;
+  filter: blur(10px);
+  transform: scale(0.97);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              filter 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+              transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.blur-animate.animate-in {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
+}
+
 /* ── Smooth scroll ────────────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;

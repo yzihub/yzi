@@ -1,9 +1,6 @@
 'use client'
 
-import React, { useRef } from 'react'
-import { motion, useInView } from 'framer-motion'
-
-const EASE = [0.16, 1, 0.3, 1] as const
+import React from 'react'
 
 const StarIcon = () => (
   <svg className="w-4 h-4 text-emerald-500 fill-emerald-500" viewBox="0 0 20 20">
@@ -22,56 +19,49 @@ const borderGradient = 'linear-gradient(90deg, rgba(255, 255, 255, 0.1), rgba(25
 
 const testimonials = [
   {
-    quote: '"O sistema trouxe clareza total sobre a operação. Hoje conseguimos identificar gargalos antes mesmo de impactarem os resultados."',
-    name: 'Rafael Mendes',
-    role: 'Diretor de Tecnologia, GrowthOps',
-    initials: 'RM',
-    metric: { value: '4.2', suffix: 'ms', suffixClass: 'text-2xl ml-0.5 text-neutral-400' },
-    metricLabel: 'Tempo médio de resposta da operação',
+    quote: '"Antes perdia leads por falta de estrutura. Hoje o sistema qualifica, organiza e encaminha cada oportunidade automaticamente. A operação ficou profissional de verdade."',
+    name: 'João Paulo',
+    role: 'Jurema Brokers — CEO',
+    initials: 'JP',
   },
   {
-    quote: '"A implementação foi rápida, mas o impacto foi imediato. Passamos a ter controle real sobre o fluxo de leads e decisões."',
-    name: 'Camila Rocha',
-    role: 'Head de Operações, ScaleLab',
-    initials: 'CR',
-    metric: { value: '32', suffix: '+', suffixClass: 'text-emerald-500' },
-    metricLabel: 'Operações ativas monitoradas',
+    quote: '"A YZI responde, qualifica e agenda sem eu precisar estar presente. Meus clientes acham que têm uma equipe inteira do outro lado. É só o sistema operando."',
+    name: 'Pamella Galdino',
+    role: 'Café com Pam — Consultoria de Interiores',
+    initials: 'PG',
   },
   {
     quote: '"Antes tudo era desconectado. Hoje a operação funciona como um sistema único, com decisões muito mais rápidas e assertivas."',
     name: 'Bruno Almeida',
-    role: 'CEO, Nexa Digital',
+    role: 'Nexa Digital — CEO',
     initials: 'BA',
-    metric: { value: '70', suffix: '%', suffixClass: 'text-2xl ml-0.5 text-neutral-400' },
-    metricLabel: 'Redução no tempo de resposta operacional',
   },
 ]
 
-export function TestimonialsSection() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
+const delays = ['delay-1', 'delay-2', 'delay-3']
 
+export function TestimonialsSection() {
   return (
-    <section ref={ref} className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-32 pr-6 pb-16 pl-6 relative items-center">
+    <section className="flex-1 flex flex-col lg:pt-32 z-10 bg-neutral-950/80 w-full pt-32 pr-6 pb-16 pl-6 relative items-center">
       <div className="w-full max-w-[1180px]">
         {/* Header */}
         <div className="flex flex-col md:flex-row gap-8 md:gap-16 mb-20 items-start justify-between">
           <div className="flex-1 w-full max-w-[520px]">
-            <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE }} className="flex items-center gap-2 mb-6">
+            <div className="blur-animate flex items-center gap-2 mb-6">
               <div className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </div>
               <span className="text-xs font-semibold uppercase tracking-widest font-geist text-neutral-600">Validação</span>
-            </motion.div>
-            <motion.h2 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
+            </div>
+            <h2 className="scroll-animate md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
               Operações que escolheram estrutura antes de tráfego
-            </motion.h2>
+            </h2>
           </div>
           <div className="flex-1 w-full max-w-[420px] md:mt-12">
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="leading-relaxed text-base text-neutral-500 font-geist">
+            <p className="scroll-animate delay-1 leading-relaxed text-base text-neutral-500 font-geist">
               Implementado em operações reais que não podem falhar. Veja como equipes estruturadas utilizam o sistema para manter controle, previsibilidade e crescimento contínuo.
-            </motion.p>
+            </p>
           </div>
         </div>
 
@@ -79,12 +69,9 @@ export function TestimonialsSection() {
         <section className="sm:py-24 w-full pt-24 pb-16">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-5 lg:gap-6 w-full">
             {testimonials.map((t, index) => (
-              <motion.div
+              <div
                 key={t.name}
-                initial={{ opacity: 0, x: -20 }}
-                animate={inView ? { opacity: 1, x: 0 } : {}}
-                transition={{ duration: 0.6, ease: EASE, delay: index * 0.15 }}
-                className="group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 z-10 rounded-[20px] shadow-[0_2px_14px_-4px_rgba(0,0,0,0.5)]"
+                className={`scroll-animate ${delays[index]} group flex flex-col border-white/[0.05] transition-all duration-300 hover:-translate-y-1 hover:border-neutral-700 bg-gradient-to-r from-white/10 to-white/0 z-10 rounded-[20px] shadow-[0_2px_14px_-4px_rgba(0,0,0,0.5)]`}
                 style={{ position: 'relative', '--border-gradient': borderGradient, '--border-radius-before': '20px' } as React.CSSProperties}
               >
                 <div className="lg:p-10 flex-1 flex flex-col z-10 pt-8 pr-8 pb-8 pl-8 relative">
@@ -105,13 +92,7 @@ export function TestimonialsSection() {
                     </div>
                   </div>
                 </div>
-                <div className="p-8 lg:p-10 border-t border-white/[0.05] relative z-10">
-                  <div className="text-4xl lg:text-5xl font-medium tracking-tight font-geist mb-2 tabular-nums text-neutral-50">
-                    {t.metric.value}<span className={t.metric.suffixClass}>{t.metric.suffix}</span>
-                  </div>
-                  <div className="text-sm font-geist leading-snug text-neutral-400">{t.metricLabel}</div>
-                </div>
-              </motion.div>
+              </div>
             ))}
           </div>
         </section>

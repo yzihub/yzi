@@ -1,41 +1,33 @@
 'use client'
 
-import { motion, useInView } from 'framer-motion'
-import { useRef } from 'react'
-
-const EASE = [0.16, 1, 0.3, 1] as const
-
 export function PerformanceSection() {
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-80px' })
-
   return (
-    <section ref={ref} aria-label="System Performance Dashboard" className="flex-1 flex flex-col lg:pt-32 bg-neutral-950/80 w-full z-50 pt-32 pr-6 pb-16 pl-6 relative items-center">
+    <section aria-label="System Performance Dashboard" className="flex-1 flex flex-col lg:pt-32 bg-neutral-950/80 w-full z-50 pt-32 pr-6 pb-16 pl-6 relative items-center">
       <div className="w-full max-w-[1180px]">
 
         {/* Header */}
         <header className="flex flex-col md:flex-row items-start justify-between gap-8 md:gap-16 mb-16">
           <div className="flex-1 w-full max-w-[520px]">
-            <motion.div initial={{ opacity: 0, filter: 'blur(10px)', scale: 0.95 }} animate={inView ? { opacity: 1, filter: 'blur(0px)', scale: 1 } : {}} transition={{ duration: 0.6, ease: EASE }} className="flex items-center gap-2 mb-6">
+            <div className="blur-animate flex items-center gap-2 mb-6">
               <div aria-hidden="true" className="relative flex h-1.5 w-1.5">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full opacity-75 bg-emerald-400" />
                 <span className="relative inline-flex rounded-full h-1.5 w-1.5 bg-emerald-500" />
               </div>
               <span className="text-xs font-medium uppercase tracking-widest font-geist text-neutral-600">Performance da operação</span>
-            </motion.div>
-            <motion.h2 initial={{ opacity: 0, y: 30 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.8, ease: EASE, delay: 0.1 }} className="md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
+            </div>
+            <h2 className="scroll-animate md:text-4xl lg:text-5xl leading-[1.15] text-3xl font-medium text-neutral-50 tracking-tight font-geist">
               Operação em escala, do diagnóstico ao fechamento
-            </motion.h2>
+            </h2>
           </div>
           <div className="flex-1 w-full max-w-[420px] md:mt-12">
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={inView ? { opacity: 1, y: 0 } : {}} transition={{ duration: 0.7, ease: EASE, delay: 0.2 }} className="leading-relaxed text-base text-neutral-500 font-geist">
+            <p className="scroll-animate delay-1 leading-relaxed text-base text-neutral-500 font-geist">
               Operação acontecendo em tempo real. Acompanhe o fluxo de leads, decisões automatizadas e performance do sistema sem perder nenhum evento.
-            </motion.p>
+            </p>
           </div>
         </header>
 
         {/* Stats grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 [animation:animationIn_0.8s_ease-out_0.3s_both] animate-on-scroll w-full mb-16 gap-2">
+        <div className="scroll-animate delay-2 grid grid-cols-2 lg:grid-cols-4 w-full mb-16 gap-2">
           <div className="flex flex-col gap-2 py-4 pl-4 border-l-2 border-emerald-500 group relative transition-transform hover:-translate-y-1 duration-300">
             <div className="absolute inset-0 bg-gradient-to-r to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none -ml-4 from-emerald-500/10" />
             <div className="flex items-center gap-2 relative z-10">
@@ -67,7 +59,7 @@ export function PerformanceSection() {
         </div>
 
         {/* Main dashboard */}
-        <div className="flex sm:p-8 [animation:animationIn_0.8s_ease-out_0.4s_both] animate-on-scroll font-geist w-full pt-4 pr-4 pb-4 pl-4 justify-center" id="dashboard-root">
+        <div className="scroll-animate delay-3 flex sm:p-8 font-geist w-full pt-4 pr-4 pb-4 pl-4 justify-center" id="dashboard-root">
           <main className="z-10 border-white/[0.05] p-6 sm:p-8 flex flex-col lg:flex-row gap-6 w-full max-w-[1100px] border rounded-[24px] relative shadow-2xl bg-neutral-900" id="main-card">
 
             {/* Left: region cards */}

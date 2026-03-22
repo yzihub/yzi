@@ -4,6 +4,7 @@ import { GeistSans } from 'geist/font/sans'
 import { MarketingNav } from '@/components/marketing/MarketingNav'
 import { MarketingFooter } from '@/components/marketing/MarketingFooter'
 import { FloatingFAB } from '@/components/marketing/FloatingFAB'
+import { ScrollAnimationInit } from '@/components/marketing/ScrollAnimationInit'
 
 export const metadata: Metadata = {
   title: 'YZIHUB - Sistema operacional de crescimento com IA',
@@ -18,6 +19,7 @@ export default function MarketingLayout({ children }: { children: React.ReactNod
       style={{ background: '#0a0a0e' }}
     >
       <MarketingNav />
+      <ScrollAnimationInit />
       <div className="flex-1">{children}</div>
       <MarketingFooter />
       <FloatingFAB />
