@@ -234,33 +234,36 @@ export function ContactForm() {
                   style={{ background: '#00E676', boxShadow: '0 0 6px rgba(0,230,118,0.6)' }}
                 />
                 <span className="font-mono text-[10px] uppercase tracking-industrial text-white/40">
-                  Fale com a equipe
+                  YZI — IA de Atendimento
                 </span>
               </div>
 
               <h2 className="text-3xl md:text-4xl font-bold text-hub-text tracking-tighter leading-tight">
-                Você não precisa entrar<br />
+                A YZI conduz<br />
                 <span
                   className="bg-clip-text text-transparent"
-                  style={{ backgroundImage: 'linear-gradient(135deg, #3B82F6 0%, #7877C6 100%)' }}
+                  style={{ backgroundImage: 'linear-gradient(135deg, #14F195 0%, #3B82F6 100%)' }}
                 >
-                  no digital sozinho.
+                  o próximo passo.
                 </span>
               </h2>
 
               <p className="text-hub-text-muted text-lg leading-relaxed">
-                A YZI é a{' '}
-                <span className="text-white font-medium">aliada técnica</span>{' '}
-                que sua empresa precisava para dar o próximo salto.
+                Ela entende seu cenário, organiza as informações e{' '}
+                <span className="text-white font-medium">direciona você para a melhor solução.</span>
+              </p>
+
+              <p className="text-hub-text-muted/70 text-base">
+                Sem formulários longos. Sem fricção.
               </p>
             </div>
 
             {/* Value props */}
             <ul className="space-y-3">
               {[
-                'Resposta em até 24 horas',
-                'Auditoria operacional sem custo',
-                'Demo ao vivo do AI OS em produção',
+                'Resposta imediata da YZI',
+                'Diagnóstico do seu cenário sem custo',
+                'Direcionamento para a melhor solução',
               ].map((item) => (
                 <li key={item} className="flex items-center gap-3 text-sm text-hub-text-muted">
                   <span className="h-5 w-5 rounded-full border border-hub-accent/30 bg-hub-accent/10 flex items-center justify-center flex-shrink-0">

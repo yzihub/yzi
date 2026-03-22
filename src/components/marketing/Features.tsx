@@ -282,9 +282,9 @@ function FeaturedSiloCard({ silo }: { silo: typeof siteConfig.silos[0] }) {
       />
 
       {/* Video — lazy-loaded, noise overlay, vignette */}
-      {'videoSrc' in silo && silo.videoSrc ? (
+      {'videoSrc' in silo && typeof (silo as { videoSrc?: string }).videoSrc === 'string' ? (
         <div className="absolute top-4 right-4 w-52 lg:w-64 pointer-events-none">
-          <SiloVideo src={String(silo.videoSrc)} />
+          <SiloVideo src={(silo as { videoSrc: string }).videoSrc} />
         </div>
       ) : (
         /* Fallback: A2A network graphic (shown when no video) */
@@ -327,9 +327,9 @@ function FeaturedSiloCard({ silo }: { silo: typeof siteConfig.silos[0] }) {
         <p className="text-hub-text-muted leading-relaxed max-w-sm">
           {silo.description}
         </p>
-        {'deepTech' in silo && silo.deepTech && (
+        {'deepTech' in silo && (silo as { deepTech?: string }).deepTech && (
           <p className="font-mono text-xs text-slate-500 leading-snug">
-            // {String(silo.deepTech)}
+            // {String((silo as { deepTech: string }).deepTech)}
           </p>
         )}
 
@@ -360,33 +360,18 @@ function FeaturedSiloCard({ silo }: { silo: typeof siteConfig.silos[0] }) {
 const featuredSilo = siteConfig.silos.find((s) => s.featured)!
 const otherSilos = siteConfig.silos.filter((s) => !s.featured)
 
-// Merge: other silos first (they get silo context), then extra features
-const gridCards = [
-  ...otherSilos.map((s) => ({
-    label: s.label,
-    title: s.title,
-    description: s.description,
-    accentColor: s.accentColor,
-    iconName: s.iconName,
-    badge: s.badge,
-    glowColor: s.glowColor,
-    tags: s.tags,
-    microLabel: 'microLabel' in s ? (s.microLabel as string) : undefined,
-    deepTech: 'deepTech' in s ? (s.deepTech as string) : undefined,
-  })),
-  ...siteConfig.features.slice(0, 4).map((f) => ({
-    label: f.label,
-    title: f.title,
-    description: f.description,
-    accentColor: f.accentColor,
-    iconName: f.iconName,
-    badge: f.badge ?? null,
-    tags: 'tags' in f ? (f.tags as string[]) : undefined,
-    microLabel: 'microLabel' in f ? (f.microLabel as string) : undefined,
-    isPAM: 'isPAM' in f ? (f.isPAM as boolean) : false,
-    deepTech: 'deepTech' in f ? (f.deepTech as string) : undefined,
-  })),
-]
+const gridCards = otherSilos.map((s) => ({
+  label: s.label,
+  title: s.title,
+  description: s.description,
+  accentColor: s.accentColor,
+  iconName: s.iconName,
+  badge: s.badge ?? null,
+  glowColor: s.glowColor,
+  tags: s.tags,
+  microLabel: ('microLabel' in s ? s.microLabel : undefined) as string | undefined,
+  deepTech: ('deepTech' in s ? s.deepTech : undefined) as string | undefined,
+}))
 
 export function Features() {
   return (
@@ -416,24 +401,21 @@ export function Features() {
               style={{ background: '#00B0FF', boxShadow: '0 0 6px rgba(0,176,255,0.6)' }}
             />
             <span className="font-mono text-[10px] uppercase tracking-industrial text-white/40">
-              AI OS Stack
+              YZI Growth System
             </span>
           </div>
           <h2
             className="text-3xl md:text-4xl font-medium text-hub-text leading-tight"
             style={{ letterSpacing: '-0.04em' }}
           >
-            Quatro camadas.<br />
+            Quatro sistemas.<br />
             <span
               className="bg-clip-text text-transparent"
-              style={{ backgroundImage: 'linear-gradient(135deg, #3B82F6 0%, #8A2BE2 100%)' }}
+              style={{ backgroundImage: 'linear-gradient(135deg, #14F195 0%, #3B82F6 100%)' }}
             >
-              Um sistema operacional.
+              Um ecossistema.
             </span>
           </h2>
-          <p className="text-hub-text-muted text-base max-w-xl mx-auto font-mono tracking-wide">
-            Data · Tools · Agents · Applications
-          </p>
         </motion.div>
 
         {/* Bento grid */}

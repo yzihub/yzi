@@ -2,6 +2,155 @@
 @tailwind components;
 @tailwind utilities;
 
+/* ── Border gradient pseudo-element ──────────────────────────────── */
+[style*="--border-gradient"]::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  padding: 1px;
+  border-radius: var(--border-radius-before, inherit);
+  -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+  background: var(--border-gradient);
+  pointer-events: none;
+}
+
+/* ── Hero aurora orbs ────────────────────────────────────────────── */
+@keyframes orb-drift-1 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  25%       { transform: translate(60px, -40px) scale(1.08); }
+  50%       { transform: translate(20px, 60px) scale(0.95); }
+  75%       { transform: translate(-50px, 20px) scale(1.05); }
+}
+@keyframes orb-drift-2 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  30%       { transform: translate(-70px, 50px) scale(1.1); }
+  60%       { transform: translate(40px, -60px) scale(0.92); }
+}
+@keyframes orb-drift-3 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  40%       { transform: translate(50px, 30px) scale(1.06); }
+  80%       { transform: translate(-30px, -50px) scale(0.97); }
+}
+@keyframes orb-drift-4 {
+  0%, 100% { transform: translate(0px, 0px) scale(1); }
+  50%       { transform: translate(-40px, 40px) scale(1.12); }
+}
+@keyframes grid-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Entrance animation ───────────────────────────────────────────── */
+@keyframes animationIn {
+  0%   { opacity: 0; transform: translateY(30px); filter: blur(8px); }
+  100% { opacity: 1; transform: translateY(0);    filter: blur(0px); }
+}
+
+/* ── Scroll-triggered animate-on-scroll ──────────────────────────── */
+.animate-on-scroll { animation-play-state: paused !important; }
+.animate-on-scroll.animate { animation-play-state: running !important; }
+
+/* ── YZI reveal ──────────────────────────────────────────────────── */
+@keyframes yziEnter {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0);    }
+}
+.yzi-enter { animation: yziEnter 0.6s ease-out both; }
+.yzi-enter-d1 { animation-delay: 0ms; }
+.yzi-enter-d2 { animation-delay: 100ms; }
+.yzi-enter-d3 { animation-delay: 200ms; }
+.yzi-enter-d4 { animation-delay: 300ms; }
+.yzi-reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease-out, transform 0.6s ease-out; }
+.yzi-reveal.is-visible { opacity: 1; transform: translateY(0); }
+
+/* ── Floating FAB ────────────────────────────────────────────────── */
+@keyframes yziFloat {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-6px); }
+}
+@keyframes yziGlow {
+  0%, 100% { box-shadow: 0 0 20px rgba(0,201,167,0.35), 0 4px 24px rgba(0,0,0,0.4); }
+  50%       { box-shadow: 0 0 36px rgba(0,201,167,0.6),  0 8px 32px rgba(0,0,0,0.4); }
+}
+#yzi-fab { animation: yziFloat 3s ease-in-out infinite, yziGlow 3s ease-in-out infinite; transition: transform 0.2s ease, box-shadow 0.2s ease; }
+#yzi-fab:hover { animation: none; transform: scale(1.05); box-shadow: 0 0 48px rgba(0,201,167,0.75), 0 8px 32px rgba(0,0,0,0.5); }
+#yzi-fab-wrapper:hover #yzi-tooltip { opacity: 1; transform: translateY(0); }
+#yzi-tooltip { opacity: 0; transform: translateY(4px); transition: opacity 0.2s ease, transform 0.2s ease; pointer-events: none; }
+
+/* ── Dashboard chart animations ──────────────────────────────────── */
+@keyframes tooltipFadeInFloat {
+  0%   { opacity: 0; transform: translate(-50%, 8px); }
+  100% { opacity: 1; transform: translate(-50%, -4px); }
+}
+.anim-tooltip { animation: tooltipFadeInFloat 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
+
+@keyframes lineDrawIn {
+  0%  { stroke-dashoffset: 1200; }
+  45% { stroke-dashoffset: 0; }
+  100%{ stroke-dashoffset: 0; }
+}
+.anim-line-draw { stroke-dasharray: 1200; animation: lineDrawIn 6s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+
+@keyframes drawPath { to { stroke-dashoffset: 0; } }
+@keyframes pulseNode { 0%, 100% { opacity: 0.5; } 50% { opacity: 1; } }
+.draw-anim { stroke-dasharray: 1000; stroke-dashoffset: 1000; animation: drawPath 2.5s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+.node-anim { animation: pulseNode 3s infinite ease-in-out; }
+
+@keyframes tooltipFloat {
+  0%, 100% { transform: translate(-50%, calc(-100% - 12px)); }
+  50%       { transform: translate(-50%, calc(-100% - 18px)); }
+}
+.anim-tooltip-float { animation: tooltipFloat 3s infinite ease-in-out; }
+
+@keyframes barPulse1 { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.7); } }
+@keyframes barPulse2 { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.5); } }
+@keyframes barPulse3 { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.85); } }
+@keyframes barPulse4 { 0%, 100% { transform: scaleY(1); } 50% { transform: scaleY(0.6); } }
+.loop-bar-1 { transform-origin: 50% 140px; animation: barPulse1 2.5s infinite ease-in-out; }
+.loop-bar-2 { transform-origin: 50% 140px; animation: barPulse2 3.2s infinite ease-in-out; }
+.loop-bar-3 { transform-origin: 50% 140px; animation: barPulse3 2.8s infinite ease-in-out; }
+.loop-bar-4 { transform-origin: 50% 140px; animation: barPulse4 3.5s infinite ease-in-out; }
+
+/* ── Module cards animations ─────────────────────────────────────── */
+@keyframes micro-eq1 { 0%, 100% { transform: scaleY(0.7); } 50% { transform: scaleY(1.3); } }
+@keyframes micro-eq2 { 0%, 100% { transform: scaleY(1.2); } 50% { transform: scaleY(0.6); } }
+@keyframes micro-eq3 { 0%, 100% { transform: scaleY(0.8); } 50% { transform: scaleY(1.4); } }
+
+@keyframes micro-draw-line1 { 0%, 15% { stroke-dashoffset: 150; } 35%, 100% { stroke-dashoffset: 0; } }
+@keyframes micro-draw-spike { 0%, 35% { stroke-dashoffset: 50; } 50%, 100% { stroke-dashoffset: 0; } }
+@keyframes micro-draw-line2 { 0%, 50% { stroke-dashoffset: 100; } 70%, 100% { stroke-dashoffset: 0; } }
+@keyframes micro-spike-dot {
+  0%, 48% { opacity: 0; transform: translate(-50%, -50%) scale(0.5); }
+  55%, 100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes micro-prog1 { 0%, 15% { width: 0%; } 40%, 85% { width: 64%; } 100% { width: 0%; } }
+@keyframes micro-prog2 { 0%, 25% { width: 0%; } 50%, 85% { width: 42%; } 100% { width: 0%; } }
+@keyframes micro-prog3 { 0%, 35% { width: 0%; } 60%, 85% { width: 91%; } 100% { width: 0%; } }
+@keyframes micro-log-seq1 { 0%, 100% { opacity: 0; transform: translateY(4px); } 15%, 85% { opacity: 1; transform: translateY(0); } }
+@keyframes micro-log-seq2 { 0%, 25%, 100% { opacity: 0; transform: translateY(4px); } 40%, 85% { opacity: 1; transform: translateY(0); } }
+@keyframes micro-log-seq3 { 0%, 50%, 100% { opacity: 0; transform: translateY(4px); } 65%, 85% { opacity: 1; transform: translateY(0); } }
+
+/* ── Performance section animations ──────────────────────────────── */
+@keyframes drawLine { 0% { stroke-dashoffset: 1200; } 100% { stroke-dashoffset: 0; } }
+.anim-draw-line { stroke-dasharray: 1200; stroke-dashoffset: 1200; animation: drawLine 3s cubic-bezier(0.4, 0, 0.2, 1) forwards; }
+@keyframes pulseSoft { 0%, 100% { opacity: 0.4; transform: scale(0.95); } 50% { opacity: 1; transform: scale(1.05); } }
+.anim-pulse-soft { animation: pulseSoft 4s ease-in-out infinite; }
+@keyframes dash { to { stroke-dashoffset: -100; } }
+@keyframes float-node { 0%, 100% { transform: translate(-50%, -50%) translateY(0); } 50% { transform: translate(-50%, -50%) translateY(-5px); } }
+
+/* ── Scrollbar hidden ─────────────────────────────────────────────── */
+.no-scrollbar::-webkit-scrollbar { display: none; }
+.no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+/* ── Tabular nums ────────────────────────────────────────────────── */
+.tabular-data { font-variant-numeric: tabular-nums; }
+
+/* ── Radar sweep ─────────────────────────────────────────────────── */
+@keyframes sweep { 0% { transform: rotate(0deg); } 100% { transform: rotate(360deg); } }
+.radar-sweep { animation: sweep 4s linear infinite; background: conic-gradient(from 0deg, transparent 70%, rgba(16, 185, 129, 0.1) 95%, rgba(16, 185, 129, 0.4) 100%); }
+
 /* ── Design tokens ────────────────────────────────────────────────── */
 :root {
   --background: #000000;

@@ -53,6 +53,7 @@ const config: Config = {
       },
 
       boxShadow: {
+        float: '0 0 0 1px rgba(255,255,255,0.05), 0 20px 60px -10px rgba(0,0,0,0.8)',
         // Status LEDs
         "glow-success": "0 0 8px rgba(0,230,118,0.6)",
         "glow-running": "0 0 10px rgba(0,176,255,0.5)",
@@ -75,8 +76,10 @@ const config: Config = {
       },
 
       fontFamily: {
-        sans: ["Inter", "system-ui", "sans-serif"],
-        mono: ["JetBrains Mono", "Fira Code", "monospace"],
+        display: ['var(--font-sora)', 'sans-serif'],
+        sans: ['Inter', 'system-ui', 'sans-serif'],
+        mono: ['var(--font-mono)', 'JetBrains Mono', 'monospace'],
+        geist: ['var(--font-geist-sans)', 'sans-serif'],
       },
 
       borderRadius: {
