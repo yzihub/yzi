@@ -1,111 +1,119 @@
-# YZIHUB
+# Opensquad
 
-Hub central de automações, agentes e integrações da YZI.
+Crie squads de agentes de IA que trabalham juntos — direto do seu IDE.
 
-## Stack
+## Como Usar
 
-- **Next.js 15** (App Router + Server Components)
-- **TypeScript** (strict mode)
-- **Tailwind CSS** (Hub-style dark design system)
-- **Supabase** (banco de dados + auth + realtime)
-- **n8n** (orquestração de workflows)
-- **Evolution API** (WhatsApp automation)
-
-## Metodologia
-
-### GSD (Get Shit Done)
-Foco em execução incremental com checkpoints. Cada fase tem um `PLAN.md` executável com tarefas atômicas e critérios de verificação claros.
-
-### A2A (Agent-to-Agent)
-Arquitetura orientada a agentes com responsabilidades isoladas. Agentes se comunicam via eventos, com estado centralizado no Supabase.
+Abra esta pasta no seu IDE e digite:
 
 ```
-Trigger (webhook/schedule/manual)
-    ↓
-Agent Coordinator (src/core/)
-    ↓
-Specialized Agents (workflow | responder | analyzer)
-    ↓
-External Services (n8n | Evolution API | Supabase)
+/opensquad
 ```
 
-## Rodando o Projeto
+Isso abre o menu principal. De lá você pode criar squads, executá-los e mais.
 
-### Pré-requisitos
-- Node.js 20+
-- npm ou pnpm
+Você também pode ser direto — descreva o que quer em linguagem natural:
 
-### Instalação
+```
+/opensquad crie um squad para escrever posts no LinkedIn sobre IA
+/opensquad execute o squad meu-squad
+```
+
+## Criar um Squad
+
+Digite `/opensquad` e escolha "Criar squad" no menu, ou seja direto:
+
+```
+/opensquad crie um squad para [o que você precisa]
+```
+
+O Arquiteto fará algumas perguntas, projetará o squad e configurará tudo automaticamente.
+
+## Executar um Squad
+
+Digite `/opensquad` e escolha "Executar squad" no menu, ou seja direto:
+
+```
+/opensquad execute o squad <nome-do-squad>
+```
+
+O squad executa automaticamente, pausando apenas nos checkpoints de decisão.
+
+## Escritório Virtual
+
+O Escritório Virtual é uma interface visual 2D que mostra seus agentes trabalhando em tempo real.
+
+**Passo 1 — Gere o dashboard** (no seu IDE):
+
+```
+/opensquad dashboard
+```
+
+**Passo 2 — Sirva localmente** (no terminal):
 
 ```bash
-# 1. Instalar dependências
-npm install
-
-# 2. Configurar variáveis de ambiente
-cp .env.local .env.local
-# Edite .env.local com suas credenciais
-
-# 3. Rodar em desenvolvimento
-npm run dev
+npx serve squads/<nome-do-squad>/dashboard
 ```
 
-Acesse: [http://localhost:3000](http://localhost:3000)
+**Passo 3 —** Abra `http://localhost:3000` no seu navegador.
 
-## Estrutura de Pastas
+---
+
+# Opensquad (English)
+
+Create AI squads that work together — right from your IDE.
+
+## How to Use
+
+Open this folder in your IDE and type:
 
 ```
-src/
-├── app/          # Next.js App Router — rotas, layouts, pages
-│   ├── api/      # API Routes (REST endpoints)
-│   ├── layout.tsx
-│   └── page.tsx
-├── core/         # Lógica de domínio
-│   ├── agents/   # Implementações de agentes A2A
-│   ├── rules/    # Regras de negócio
-│   └── events/   # Sistema de eventos
-├── lib/          # Utilitários, helpers, config de clientes
-├── mcp/          # Integrações MCP (Model Context Protocol)
-├── services/     # Clientes de serviços externos
-│   ├── supabase/ # Cliente Supabase + queries
-│   ├── n8n/      # Cliente n8n API
-│   └── evolution/# Cliente Evolution API
-└── types/        # TypeScript types globais
-
-AI_CONTEXT/       # Contexto para IAs (Claude, Cursor, Copilot)
-├── A2A_RULES.md       # Regras do protocolo A2A
-├── ARCH_BLUEPRINT.md  # Decisões de arquitetura
-├── METRICS.md         # KPIs e métricas do projeto
-├── PROGRESS.md        # Progresso atual
-├── SYSTEM_MAP.md      # Mapa de sistemas e integrações
-└── YZIHUB_METHOD.md   # Metodologia completa
-
-docs/             # Documentação técnica
+/opensquad
 ```
 
-## Variáveis de Ambiente
+This opens the main menu. From there you can create squads, run them, and more.
 
-| Variável | Descrição |
-|----------|-----------|
-| `NEXT_PUBLIC_SUPABASE_URL` | URL do projeto Supabase |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Chave anon do Supabase |
-| `SUPABASE_SERVICE_ROLE_KEY` | Chave service role (server-only) |
-| `N8N_API_KEY` | API Key do n8n |
-| `N8N_BASE_URL` | URL base do n8n (default: localhost:5678) |
-| `EVOLUTION_API_KEY` | API Key da Evolution API |
-| `EVOLUTION_API_URL` | URL base da Evolution API |
+You can also be direct — describe what you want in plain language:
 
-## Comandos
+```
+/opensquad create a squad for writing LinkedIn posts about AI
+/opensquad run my-squad
+```
+
+## Create a Squad
+
+Type `/opensquad` and choose "Create squad" from the menu, or be direct:
+
+```
+/opensquad create a squad for [what you need]
+```
+
+The Architect will ask a few questions, design the squad, and set everything up automatically.
+
+## Run a Squad
+
+Type `/opensquad` and choose "Run squad" from the menu, or be direct:
+
+```
+/opensquad run the <squad-name> squad
+```
+
+The squad runs automatically, pausing only at decision checkpoints.
+
+## Virtual Office
+
+The Virtual Office is a 2D visual interface that shows your agents working in real time.
+
+**Step 1 — Generate the dashboard** (in your IDE):
+
+```
+/opensquad dashboard
+```
+
+**Step 2 — Serve it locally** (in terminal):
 
 ```bash
-npm run dev      # Desenvolvimento com hot-reload
-npm run build    # Build de produção
-npm run start    # Servidor de produção
-npm run lint     # ESLint
+npx serve squads/<squad-name>/dashboard
 ```
 
-## Contexto AI
-
-Os arquivos em `/AI_CONTEXT/` devem ser mantidos atualizados. Toda IA (Claude, Cursor, Copilot) deve consultar esses arquivos antes de implementar novas features.
-
-**Antes de qualquer implementação:** leia `ARCH_BLUEPRINT.md` e `A2A_RULES.md`.
-**Após completar uma tarefa:** atualize `PROGRESS.md`.
+**Step 3 —** Open `http://localhost:3000` in your browser.
