@@ -4,18 +4,10 @@ import {
   MOCK_COCKPIT_FUNNEL,
   MOCK_RECENT_CONVERSATIONS,
 } from '@/lib/mock/cockpit'
-
-const sections = [
-  { key: 'metricas', label: 'MÉTRICAS', placeholder: 'MetricsRow — em breve' },
-  { key: 'funil', label: 'FUNIL', placeholder: 'SalesFunnel — em breve' },
-  { key: 'conversas', label: 'CONVERSAS RECENTES', placeholder: 'ConversationsList — em breve' },
-  { key: 'agente', label: 'STATUS DO AGENTE', placeholder: 'AgentStatus — em breve' },
-]
+import PerformanceCards from '@/components/cockpit/PerformanceCards'
+import FunnelSimple from '@/components/cockpit/FunnelSimple'
 
 export default function CockpitPage() {
-  // dados disponíveis para os componentes reais quando substituírem os placeholders
-  const _metrics = MOCK_COCKPIT_METRICS
-  const _funnel = MOCK_COCKPIT_FUNNEL
   const _conversations = MOCK_RECENT_CONVERSATIONS
 
   return (
@@ -29,17 +21,37 @@ export default function CockpitPage() {
         </p>
       </header>
 
-      <div className="flex flex-col gap-4">
-        {sections.map(({ key, label, placeholder }) => (
-          <section key={key} className="flex flex-col gap-2">
-            <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b]">
-              {label}
-            </p>
-            <div className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
-              <span className="font-mono text-xs text-[#52525b]">{placeholder}</span>
-            </div>
-          </section>
-        ))}
+      <div className="flex flex-col gap-6">
+        <section className="flex flex-col gap-2">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b]">
+            Métricas
+          </p>
+          <PerformanceCards metrics={MOCK_COCKPIT_METRICS} />
+        </section>
+
+        <section className="flex flex-col gap-2">
+          <div className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
+            <FunnelSimple data={MOCK_COCKPIT_FUNNEL} />
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-2">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b]">
+            Conversas Recentes
+          </p>
+          <div className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
+            <span className="font-mono text-xs text-[#52525b]">ConversationsList — em breve</span>
+          </div>
+        </section>
+
+        <section className="flex flex-col gap-2">
+          <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b]">
+            Status do Agente
+          </p>
+          <div className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
+            <span className="font-mono text-xs text-[#52525b]">AgentStatus — em breve</span>
+          </div>
+        </section>
       </div>
     </div>
   )
