@@ -1,5 +1,6 @@
 import { MOCK_CLIENTS, MOCK_ALERTS } from '@/lib/mock/control'
 import ClientsTable from '@/components/control/ClientsTable'
+import LeadsTable from '@/components/control/LeadsTable'
 import AlertsFeed from '@/components/control/AlertsFeed'
 
 export default function ControlPage() {
@@ -16,9 +17,7 @@ export default function ControlPage() {
       <div className="grid grid-cols-3 gap-4">
         <ClientsTable clients={MOCK_CLIENTS} />
 
-        <div className="border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
-          <span className="font-mono text-xs text-[#52525b]">LeadsTable — em breve</span>
-        </div>
+        <LeadsTable clients={MOCK_CLIENTS} />
 
         <AlertsFeed alerts={MOCK_ALERTS} />
       </div>
