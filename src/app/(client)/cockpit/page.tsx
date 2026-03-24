@@ -27,9 +27,7 @@ export default function CockpitPage() {
         </section>
 
         <section>
-          <div className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-4">
-            <FunnelSimple data={MOCK_COCKPIT_FUNNEL} />
-          </div>
+          <FunnelSimple data={MOCK_COCKPIT_FUNNEL} />
         </section>
 
         <section>

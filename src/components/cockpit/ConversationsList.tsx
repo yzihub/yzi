@@ -16,30 +16,30 @@ const badgeStyles: Record<Status, string> = {
 
 export default function ConversationsList({ conversations }: Props) {
   return (
-    <div>
-      <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b] mb-3">
+    <div className="bg-neutral-900/50 border border-white/[0.05] rounded-xl p-4 backdrop-blur-sm">
+      <p className="font-mono text-[11px] uppercase tracking-widest text-neutral-500 mb-3">
         Conversas Recentes
       </p>
 
-      <div className="flex flex-col gap-2">
+      <div className="flex flex-col">
         {conversations.map((conv) => (
           <div
             key={conv.id}
-            className="bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm p-3 flex justify-between items-start"
+            className="border-b border-white/[0.05] py-3 flex justify-between items-start hover:bg-white/[0.02] transition-colors duration-150 px-1 -mx-1 rounded"
           >
             <div>
-              <p className="font-sans text-xs font-semibold text-white">{conv.contactName}</p>
+              <p className="font-sans text-sm font-medium text-neutral-200">{conv.contactName}</p>
               <span
-                className={`font-mono text-[10px] px-1.5 py-0.5 rounded-sm mt-1 inline-block ${badgeStyles[conv.status]}`}
+                className={`font-mono text-[10px] px-1.5 py-0.5 rounded mt-1 inline-block ${badgeStyles[conv.status]}`}
               >
                 {conv.status}
               </span>
-              <p className="font-sans text-xs text-[#71717a] mt-0.5 truncate max-w-[200px]">
+              <p className="font-sans text-xs text-neutral-500 mt-0.5 truncate max-w-[200px]">
                 {conv.lastMessage}
               </p>
             </div>
 
-            <span className="font-mono text-[10px] text-[#52525b] whitespace-nowrap ml-3">
+            <span className="font-mono text-[10px] text-neutral-500 whitespace-nowrap ml-3">
               {conv.time}
             </span>
           </div>
