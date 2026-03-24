@@ -1,21 +1,26 @@
 import Clock from '@/components/shared/Clock'
 
-const badges = ['n8n', 'Evolution', 'NocoDB']
+const badges: { name: string; dot: string }[] = [
+  { name: 'n8n',       dot: 'bg-emerald-500 animate-pulse' },
+  { name: 'Evolution', dot: 'bg-emerald-500 animate-pulse' },
+  { name: 'NocoDB',    dot: 'bg-amber-500' },
+]
 
 export default function Topbar() {
   return (
     <header className="h-11 shrink-0 bg-[#0A0A0C] border-b border-white/[0.08] flex items-center justify-between px-4">
-      <span className="font-sans text-sm font-semibold tracking-widest uppercase text-white">
+      <span className="font-mono text-sm font-semibold text-white">
         YZI<span className="text-[#60A5FA]">.</span>CONTROL
       </span>
 
       <div className="flex items-center gap-3">
-        {badges.map((name) => (
+        {badges.map(({ name, dot }) => (
           <span
             key={name}
-            className="text-[10px] font-mono uppercase tracking-widest text-white/40 border border-white/[0.08] px-2 py-0.5 rounded-sm"
+            className="flex items-center gap-1.5 bg-neutral-900 border border-white/[0.08] rounded-md px-2.5 py-1"
           >
-            {name}
+            <span className={`w-1.5 h-1.5 rounded-full shrink-0 ${dot}`} />
+            <span className="font-mono text-[11px] text-neutral-300">{name}</span>
           </span>
         ))}
         <Clock />

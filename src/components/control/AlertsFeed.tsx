@@ -14,9 +14,9 @@ const icon: Record<Severity, React.ReactNode> = {
 }
 
 const borderLeft: Record<Severity, string> = {
-  critical: 'border-l-2 border-l-[#ef4444]',
-  warning:  'border-l-2 border-l-[#f59e0b]',
-  info:     'border-l-2 border-l-[#60A5FA]',
+  critical: 'border-l-2 border-l-red-500',
+  warning:  'border-l-2 border-l-yellow-500',
+  info:     'border-l-2 border-l-blue-400',
 }
 
 function formatTime(iso: string): string {
@@ -30,7 +30,7 @@ function formatTime(iso: string): string {
 export default function AlertsFeed({ alerts }: Props) {
   return (
     <div>
-      <p className="font-mono text-[10px] uppercase tracking-widest text-[#52525b] mb-3">
+      <p className="text-[11px] font-mono tracking-widest uppercase text-neutral-500 mb-4">
         Alertas Recentes
       </p>
 
@@ -40,18 +40,19 @@ export default function AlertsFeed({ alerts }: Props) {
             key={alert.id}
             className={[
               'flex items-start gap-3 p-3',
-              'bg-[#0A0A0C] border border-[rgba(255,255,255,0.08)] rounded-sm',
+              'bg-neutral-950/50 border border-white/[0.05] rounded-xl',
               borderLeft[alert.severity],
             ].join(' ')}
           >
             <span className="mt-0.5 shrink-0">{icon[alert.severity]}</span>
 
             <div className="flex-1 min-w-0">
-              <p className="font-sans text-xs font-semibold text-white">{alert.clientName}</p>
-              <p className="font-sans text-xs text-[#71717a] mt-0.5">{alert.message}</p>
+              <p className="font-sans text-sm font-medium text-neutral-200">{alert.clientName}</p>
+              <p className="font-sans text-xs text-neutral-400 mt-0.5">{alert.message}</p>
+              <p className="font-sans text-xs text-neutral-500 mt-0.5">{alert.source}</p>
             </div>
 
-            <span className="font-mono text-[10px] text-[#52525b] whitespace-nowrap shrink-0">
+            <span className="font-mono text-[10px] text-neutral-500 whitespace-nowrap shrink-0">
               {formatTime(alert.time)}
             </span>
           </div>
